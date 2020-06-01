@@ -13,17 +13,17 @@ app.use(express.static('public'));
 fs.readFile('credentials.json', (err, content) => {
     if (err) return console.log('Error loading client secret file:', err);
     // Authorize a client with credentials, then call the Google Sheets API.
-    authorize(JSON.parse(content), listMajors);
+    authorize(JSON.parse(content), pulldata);
     });
     /**
     * Prints the names and majors of students in a sample spreadsheet:
     * @see https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
     * @param {google.auth.OAuth2} auth The authenticated Google OAuth client.
     */
-    function listMajors(auth) {
+    function pulldata(auth) {
     const sheets = google.sheets({version: 'v4', auth});
     sheets.spreadsheets.values.get({
-    spreadsheetId: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms',
+    spreadsheetId: '1k-O6D4nrzXjzzoTSDLxryJbcbvJL2hAv-oPo_mDgqnU',
     range: 'Class Data!A2:E',
     }, (err, res) => {
     if (err) return console.log('The API returned an error: ' + err);
@@ -41,7 +41,7 @@ fs.readFile('credentials.json', (err, content) => {
     }
 
     // If modifying these scopes, delete token.json.
-const SCOPES = [‘https://www.googleapis.com/auth/spreadsheets.readonly'];
+const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
 // The file token.json stores the user’s access and refresh tokens, and is
 // created automatically when the authorization flow completes for the first
 // time.
